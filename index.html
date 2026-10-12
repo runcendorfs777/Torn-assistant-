@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Runcendorfs Torn Assistant</title><link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#0b1020;--p:#121a2c;--p2:#18233a;--t:#eef2ff;--m:#9ca9c5;--ok:#22c55e;--w:#f59e0b;--bad:#ef4444;--a:#60a5fa;--l:#283653}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}.wrap{max-width:980px;margin:auto;padding:12px}header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:8px 0 14px}h1{font-size:22px;margin:0}.sub,.tiny{color:var(--m);font-size:11px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}.card{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:13px}.s12{grid-column:span 12}.s6{grid-column:span 6}.s4{grid-column:span 4}@media(max-width:760px){.s6,.s4{grid-column:span 12}}h2{font-size:13px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.08em}button,input{font:inherit}button{border:0;border-radius:11px;padding:10px 13px;background:var(--a);font-weight:750;color:#07111f}button.sec{background:#25324c;color:var(--t)}button.ghost{background:transparent;color:var(--m);border:1px solid var(--l)}button:disabled{opacity:.55}.setup{display:grid;grid-template-columns:1fr auto;gap:8px}input{width:100%;padding:10px;background:#0e1627;color:var(--t);border:1px solid var(--l);border-radius:10px}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(40,54,83,.6)}.row:last-child{border:0}.lab{color:var(--m);font-size:13px}.val{font-weight:750;text-align:right}.big{font-size:25px;font-weight:850}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#25324c;font-size:12px;font-weight:750}.ok{color:#8ff0ad;background:rgba(34,197,94,.13)}.warn{color:#ffd184;background:rgba(245,158,11,.13)}.bad{color:#ff9a9a;background:rgba(239,68,68,.13)}.meter{height:7px;background:#202b43;border-radius:999px;overflow:hidden;margin:8px 0}.meter i{display:block;height:100%;background:var(--a);width:0}.market{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}@media(max-width:760px){.market{grid-template-columns:1fr}}.mb{background:var(--p2);border:1px solid var(--l);border-radius:14px;padding:12px}.mt{display:flex;justify-content:space-between;font-weight:800}.price{font-size:25px;font-weight:850;margin:8px 0}.kv{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:12px}.kv div:nth-child(odd){color:var(--m)}.kv div:nth-child(even){font-weight:700;text-align:right}.alerts{display:grid;gap:7px}.alert{padding:10px 12px;background:#17223a;border-left:4px solid var(--a);border-radius:10px;font-size:13px}.alert.ok{border-color:var(--ok)}.alert.warn{border-color:var(--w)}.alert.bad{border-color:var(--bad)}.settings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}@media(max-width:760px){.settings{grid-template-columns:repeat(2,1fr)}}.setting label{display:block;color:var(--m);font-size:11px;margin-bottom:4px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--m)}.dot.ok{background:var(--ok)}.dot.warn{background:var(--w)}.dot.bad{background:var(--bad)}pre{white-space:pre-wrap;word-break:break-word;max-height:330px;overflow:auto;background:#09101d;border:1px solid var(--l);padding:9px;border-radius:9px;font-size:10px}summary{color:var(--m);font-size:12px;cursor:pointer}.footer{text-align:center;color:var(--m);font-size:11px;padding:16px}
+
+/* Dollar Bazaars radar */
+.db-head{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap}.db-controls{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:8px;margin:10px 0}.db-controls select,.db-controls input,.db-import textarea{width:100%;border:1px solid var(--l);background:#0e1627;color:var(--t);padding:10px;border-radius:10px;font:inherit}.db-controls select{appearance:auto}.db-import textarea{height:100px;resize:vertical}.db-actions{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0}.db-actions a,.db-link{display:inline-block;padding:9px 12px;border-radius:10px;background:#25324c;color:#d8e8ff;text-decoration:none;font-size:12px;font-weight:750}.db-note{font-size:12px;color:var(--m);line-height:1.5}.db-list{display:grid;gap:8px;margin-top:12px}.db-item{background:var(--p2);border:1px solid var(--l);border-radius:12px;padding:12px}.db-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.db-item h3{font-size:15px;margin:0 0 5px}.db-price{font-size:20px;font-weight:850;white-space:nowrap}.db-meta{font-size:12px;color:var(--m)}.db-item-bottom{display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-top:10px;align-items:center}.db-item-bottom button{font-size:12px;padding:8px 9px}.db-item-bottom select{border:1px solid var(--l);background:#0e1627;color:var(--t);padding:7px;border-radius:9px}.db-pill{font-size:11px;padding:4px 7px;border-radius:999px;background:#24324c;color:#d6e1fb}.db-summary{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;margin-top:9px}.db-summary span{padding:6px 9px;border-radius:9px;background:#202c44}.db-imp-label{margin-top:8px;font-size:12px;color:var(--m)}.db-import summary{color:#dce8ff;font-size:13px}.db-imp-msg{font-size:12px;margin-top:7px;color:#9cc3ff}@media(max-width:760px){.db-controls{grid-template-columns:1fr 1fr}.db-controls input{grid-column:span 2}.db-price{font-size:18px}}
+</style></head>
+<body><div class="wrap">
+<header><div><h1>Runcendorfs Torn Assistant</h1><div class="sub">read-only · nekādas automātiskas spēles darbības</div></div><div><button id="refresh" class="sec">Atjaunot</button> <button id="notif" class="ghost">Paziņojumi</button></div></header>
+<div class="grid">
+<section class="card s12"><h2>Savienojums</h2><div class="setup"><input id="key" type="password" autocomplete="off" placeholder="Torn API key — glabājas tikai šajā ierīcē"><button id="saveKey">Saglabāt</button></div><div class="row"><div class="lab">Statuss</div><div class="val"><span id="dot" class="dot"></span> <span id="status">Nav savienots</span></div></div><div class="row"><div class="lab">Pēdējais refresh</div><div id="last" class="val">—</div></div><div class="row"><div class="lab">Auto-refresh</div><div class="val"><label><input id="auto" type="checkbox" checked style="width:auto"> ik 60 s</label></div></div><div class="row"><div class="lab">Compatibility mode</div><div class="val"><label><input id="compat" type="checkbox" style="width:auto"> key URL parametrā</label></div></div><div class="tiny">Noklusēti izmanto Authorization header. Compatibility mode ieslēdz tikai tad, ja pārlūks bloķē API pieprasījumu.</div></section>
+<section class="card s4"><h2>Wallet</h2><div id="cash" class="big">$—</div><div id="cashRisk" class="pill">nav datu</div><div class="row"><div class="lab">Slieksnis</div><div id="walletView" class="val">$1,000,000</div></div></section>
+<section class="card s4"><h2>Energy</h2><div id="energy" class="big">— / —</div><div class="meter"><i id="energyBar"></i></div><div class="row"><div class="lab">Pilns pēc</div><div id="energyFull" class="val">—</div></div></section>
+<section class="card s4"><h2>Nerve</h2><div id="nerve" class="big">— / —</div><div class="meter"><i id="nerveBar"></i></div><div class="row"><div class="lab">Pilns pēc</div><div id="nerveFull" class="val">—</div></div></section>
+<section class="card s6"><h2>Cooldowns</h2><div class="row"><div class="lab">Drug</div><div id="drug" class="val">—</div></div><div class="row"><div class="lab">Medical</div><div id="med" class="val">—</div></div><div class="row"><div class="lab">Booster</div><div id="booster" class="val">—</div></div></section>
+<section class="card s6"><h2>Progress</h2><div class="row"><div class="lab">Education</div><div id="edu" class="val">—</div></div><div class="row"><div class="lab">Racing</div><div id="racing" class="val">—</div></div><div class="row"><div class="lab">Organized Crime</div><div id="oc" class="val">—</div></div><div class="row"><div class="lab">Travel</div><div id="travel" class="val">—</div></div></section>
+<section class="card s12"><h2>Market watch</h2><div class="market">
+<div class="mb"><div class="mt">Hydrogen Tank <span id="hydrogenState" class="pill">—</span></div><div id="hydrogenPrice" class="price">$—</div><div class="kv"><div>Bulk 50</div><div id="hydrogenBulk">$—</div><div>BUY limits</div><div id="hydrogenLimit">$—</div><div>Target sell</div><div id="hydrogenSell">$—</div><div>ROI</div><div id="hydrogenRoi">—</div></div></div>
+<div class="mb"><div class="mt">Methane Tank <span id="methaneState" class="pill">—</span></div><div id="methanePrice" class="price">$—</div><div class="kv"><div>Bulk 50</div><div id="methaneBulk">$—</div><div>BUY limits</div><div id="methaneLimit">$—</div><div>Target sell</div><div id="methaneSell">$—</div><div>ROI</div><div id="methaneRoi">—</div></div></div>
+<div class="mb"><div class="mt">Oxygen Tank <span id="oxygenState" class="pill">—</span></div><div id="oxygenPrice" class="price">$—</div><div class="kv"><div>Bulk 50</div><div id="oxygenBulk">$—</div><div>BUY limits</div><div id="oxygenLimit">$—</div><div>Target sell</div><div id="oxygenSell">$—</div><div>ROI</div><div id="oxygenRoi">—</div></div></div>
+</div><div class="tiny" style="margin-top:8px">ROI = (target sell × 0.95 − buy price) / buy price. Panelis pats neko nepērk un nepārdod.</div></section>
+
+<section class="card s12" id="dollarRadar">
+ <div class="db-head"><h2 style="margin:0">Dollar Bazaars · $1 radars</h2><span id="dbSource" class="pill warn">Momentuzņēmums · nav tiešraide</span></div>
+ <div class="db-note" style="margin-top:8px">TornW3B publiskie $1 piedāvājumi. Vērtība norādīta par <strong>visu daudzumu</strong>, nevis vienu preci. Tava ID piekļuve $1 lock jāapstiprina Torn Bazaar.</div>
+ <div class="db-actions">
+  <a href="https://weav3r.dev/dollar-bazaars" target="_blank" rel="noopener noreferrer">Atvērt dzīvo TornW3B ↗</a>
+  <button id="dbShowImport" class="sec" type="button">Ielādēt jaunus datus</button>
+  <button id="dbReset" class="ghost" type="button">Atjaunot sākotnējo sarakstu</button>
+ </div>
+ <div class="db-summary"><span id="dbCount">—</span><span id="dbTop">—</span><span id="dbNew">—</span></div>
+ <div class="db-controls">
+  <input id="dbSearch" placeholder="Meklēt preci vai pārdevēju" aria-label="Meklēt preci vai pārdevēju">
+  <select id="dbSort" aria-label="Kārtošana"><option value="value">Vērtīgākie vispirms</option><option value="unit">Vērtība par 1 gab.</option><option value="new">Jaunie vispirms</option><option value="seller">Pārdevējs A–Z</option></select>
+  <select id="dbFilter" aria-label="Piekļuves filtrs"><option value="all">Visi piedāvājumi</option><option value="new">Tikai jaunie</option><option value="available">Man pieejamie</option><option value="unseen">Nepārbaudītie</option><option value="locked">Slēgtie man</option><option value="favorite">Favorīti</option></select>
+ </div>
+ <details class="db-import" id="dbImportBox">
+  <summary>Importēt jaunāku sarakstu (teksts / CSV / JSON)</summary>
+  <p class="db-note">Nokopē preču sarakstu no TornW3B un ielīmē zemāk. Pieņem arī CSV rindas <code>item,seller,id,qty,totalValue</code> vai JSON masīvu ar šiem laukiem. Datus salīdzina ar iepriekšējo importu, izceļot jaunos piedāvājumus. Nekādu API atslēgu šeit nevajag.</p>
+  <textarea id="dbInput" placeholder="Xanax Drug | Alfa_Cough [3587169] Qty: 3 | $2.7M
+..." spellcheck="false"></textarea>
+  <div class="db-actions"><button id="dbImportBtn" type="button">Importēt un salīdzināt</button><button id="dbCsvSample" type="button" class="ghost">CSV paraugs</button></div>
+  <div id="dbImportMessage" class="db-imp-msg" aria-live="polite"></div>
+ </details>
+ <div class="db-list" id="dbList"><div class="db-note">Ielādē piedāvājumus…</div></div>
+ <p class="db-note" style="margin-top:10px">Potenciālais neto pārdošanas apjoms tiek rēķināts kā tirgus vērtība × 0,95 mīnus $1 par katru preci. Tas nav garantēts ienākums: cenas un pieejamība var mainīties, bet $1 lock var būt slēgts tieši tev. Nekādu automātisku pirkumu.</p>
+</section>
+<section class="card s12"><h2>Brīdinājumi</h2><div id="alerts" class="alerts"><div class="alert">Pagaidām nav datu.</div></div></section>
+<section class="card s12"><h2>Iestatījumi</h2><div class="settings">
+<div class="setting"><label>Wallet alert virs</label><input id="walletLimit" type="number"></div>
+<div class="setting"><label>H2 green</label><input id="hydrogenGreen" type="number"></div><div class="setting"><label>H2 yellow</label><input id="hydrogenYellow" type="number"></div><div class="setting"><label>H2 target sell</label><input id="hydrogenTarget" type="number"></div>
+<div class="setting"><label>CH4 green</label><input id="methaneGreen" type="number"></div><div class="setting"><label>CH4 yellow</label><input id="methaneYellow" type="number"></div><div class="setting"><label>CH4 target sell</label><input id="methaneTarget" type="number"></div>
+<div class="setting"><label>O2 green</label><input id="oxygenGreen" type="number"></div><div class="setting"><label>O2 yellow</label><input id="oxygenYellow" type="number"></div><div class="setting"><label>O2 target sell</label><input id="oxygenTarget" type="number"></div>
+<div class="setting"><label>Energy alert %</label><input id="energyAlertPct" type="number"></div><div class="setting"><label>Nerve alert %</label><input id="nerveAlertPct" type="number"></div></div><div style="margin-top:9px"><button id="saveSettings" class="sec">Saglabāt iestatījumus</button></div></section>
+<section class="card s12"><h2>Diagnostics</h2><div class="tiny">Ja kaut kas neparādās pareizi, atsūti šo JSON. API key te netiek iekļauts.</div><details><summary>Raw API rezultāti</summary><pre id="diag">{}</pre></details><details><summary>Cenu vēsture</summary><pre id="hist">[]</pre></details></section>
+</div><div class="footer">v1.1 · Dollar Bazaars Radar · Torn API v2 · read-only</div></div>
+<script>
+const B="https://api.torn.com/v2", ITEMS={hydrogen:{id:1459,name:"Hydrogen Tank"},methane:{id:1460,name:"Methane Tank"},oxygen:{id:1219,name:"Oxygen Tank"}}, DEF={walletLimit:1000000,hydrogenGreen:22500,hydrogenYellow:24000,hydrogenTarget:26500,methaneGreen:22500,methaneYellow:24000,methaneTarget:26500,oxygenGreen:26000,oxygenYellow:27000,oxygenTarget:30150,energyAlertPct:90,nerveAlertPct:90};let raw={},market={},timer=null;const $=x=>document.getElementById(x), money=n=>Number.isFinite(Number(n))?"$"+Math.round(Number(n)).toLocaleString("en-US"):"$—";
+function st(){let s={...DEF};try{s={...s,...JSON.parse(localStorage.getItem("taSettings")||"{}")}}catch(e){}return s}function loadSt(){const s=st();Object.keys(DEF).forEach(k=>{if($(k))$(k).value=s[k]});$("walletView").textContent=money(s.walletLimit)}function saveSt(){const s={};Object.keys(DEF).forEach(k=>s[k]=Number($(k).value||DEF[k]));localStorage.setItem("taSettings",JSON.stringify(s));loadSt();renderMarket();alerts()}
+function sec(v){v=Number(v);if(!Number.isFinite(v)||v<=0)return"READY";let d=Math.floor(v/86400);v%=86400;let h=Math.floor(v/3600);v%=3600;let m=Math.floor(v/60);return d?`${d}d ${h}h`:h?`${h}h ${m}m`:`${m}m`}
+function deep(o,keys){if(!o||typeof o!=="object")return;for(const k of keys)if(Object.prototype.hasOwnProperty.call(o,k))return o[k];for(const v of Object.values(o)){const r=deep(v,keys);if(r!==undefined)return r}}
+async function api(path){const key=$("key").value.trim();if(!key)throw Error("Ievadi API key");let url=B+path,opt={cache:"no-store"};if($("compat").checked)url+=(url.includes("?")?"&":"?")+"key="+encodeURIComponent(key);else opt.headers={Authorization:"ApiKey "+key};const r=await fetch(url,opt);let d;try{d=await r.json()}catch(e){throw Error("API neatgrieza JSON")};if(d?.error)throw Error(d.error.error||JSON.stringify(d.error));if(!r.ok)throw Error("HTTP "+r.status);return d}async function safe(n,p){try{raw[n]=await api(p);return raw[n]}catch(e){raw[n]={_error:e.message};return null}}
+function unwrap(d,k){return d?.[k]!==undefined?d[k]:d}function bar(n){const d=raw.bars&&!raw.bars._error?unwrap(raw.bars,"bars"):null;return d?.[n]||deep(d,[n])}function renderBar(n,txt,bi,fi){const b=bar(n);if(!b||typeof b!=="object")return;const c=Number(b.current??b.value??0),m=Number(b.maximum??b.max??0);$(txt).textContent=`${c} / ${m}`;$(bi).style.width=(m?Math.min(100,c/m*100):0)+"%";$(fi).textContent=sec(b.fulltime??b.full_time??b.time_to_full??0)}function cash(){return Number(deep(raw.money,["wallet","money_onhand","cash"]))}
+function renderUser(){renderBar("energy","energy","energyBar","energyFull");renderBar("nerve","nerve","nerveBar","nerveFull");const s=st(),c=cash();$("cash").textContent=money(c);const r=$("cashRisk");if(Number.isFinite(c)){if(c>=s.walletLimit){r.className="pill bad";r.textContent="MUG RISK"}else if(c>=s.walletLimit*.5){r.className="pill warn";r.textContent="uzmanīgi"}else{r.className="pill ok";r.textContent="zem sliekšņa"}}const cd=raw.cooldowns&&!raw.cooldowns._error?unwrap(raw.cooldowns,"cooldowns"):{};$("drug").textContent=sec(deep(cd,["drug","drugs"])??0);$("med").textContent=sec(deep(cd,["medical","med"])??0);$("booster").textContent=sec(deep(cd,["booster","boosters"])??0);const e=raw.education&&!raw.education._error?raw.education:null,el=deep(e,["timeleft","time_left","remaining"]),en=deep(e,["name","course_name"]);$("edu").textContent=el!==undefined?`${en||"kurss"} · ${sec(el)}`:(e?"aktīvs / skat. diagnostics":"—");const rr=raw.racingrecords&&!raw.racingrecords._error?raw.racingrecords:null,rs=deep(rr,["racing_skill","skill"]),rp=deep(rr,["points","racing_points"]),rc=deep(rr,["class","racing_class"]);let a=[];if(rc!==undefined)a.push("Class "+rc);if(rs!==undefined)a.push("RS "+Number(rs).toFixed(2));if(rp!==undefined)a.push(rp+" pts");$("racing").textContent=a.length?a.join(" · "):(rr?"skat. diagnostics":"—");const oc=raw.organizedcrime&&!raw.organizedcrime._error?raw.organizedcrime:null;$("oc").textContent=deep(oc,["name","crime_name","status"])|| (oc?"aktīvs / skat. diagnostics":"—");const tr=raw.travel&&!raw.travel._error?raw.travel:null,dest=deep(tr,["destination","country"]),tl=deep(tr,["time_left","timeleft"]);$("travel").textContent=dest?dest+(tl!==undefined?" · "+sec(tl):""):(tr?"Torn / skat. diagnostics":"—");$("diag").textContent=JSON.stringify(raw,null,2)}
+function arrFind(o){if(!o||typeof o!=="object")return null;for(const v of Object.values(o))if(Array.isArray(v)&&v.some(x=>x&&typeof x==="object"&&(x.price!==undefined||x.cost!==undefined)))return v;for(const v of Object.values(o)){const r=arrFind(v);if(r)return r}return null}function listings(d){let a=d?.itemmarket?.listings||d?.listings||(Array.isArray(d?.itemmarket)?d.itemmarket:null)||arrFind(d)||[];return a.map(x=>({price:Number(x.price??x.cost??deep(x,["price","cost"])),qty:Number(x.amount??x.quantity??x.available??1)})).filter(x=>Number.isFinite(x.price)&&x.price>0).sort((a,b)=>a.price-b.price)}function bulk(a,n=50){let left=n,c=0,b=0;for(const x of a){if(left<=0)break;const q=Math.min(left,Math.max(1,x.qty));left-=q;b+=q;c+=q*x.price}return b?{avg:c/b,b}:null}function zone(p,g,y){return !Number.isFinite(p)?["—",""]:p<=g?["BUY","ok"]:p<=y?["WATCH","warn"]:["PASS","bad"]}
+function renderMarket(){const s=st();for(const k of Object.keys(ITEMS)){const a=market[k]||[],p=a[0]?.price,b=bulk(a),g=s[k+"Green"],y=s[k+"Yellow"],t=s[k+"Target"],[z,cl]=zone(p,g,y);$(k+"State").textContent=z;$(k+"State").className="pill "+cl;$(k+"Price").textContent=money(p);$(k+"Bulk").textContent=b?money(b.avg)+` (${b.b}u)`:"$—";$(k+"Limit").textContent=`≤${money(g)} / ≤${money(y)}`;$(k+"Sell").textContent=money(t);$(k+"Roi").textContent=Number.isFinite(p)?(((t*.95-p)/p)*100).toFixed(1)+"%":"—"}}
+function notify(t){if("Notification"in window&&Notification.permission==="granted")try{new Notification("Torn Assistant",{body:t,icon:"icon.svg"})}catch(e){}}function alerts(){const s=st(),a=[],c=cash();if(Number.isFinite(c)&&c>=s.walletLimit)a.push(["bad",`Wallet ${money(c)} — virs ${money(s.walletLimit)} sliekšņa.`]);for(const [n,b,l] of [["Energy",bar("energy"),s.energyAlertPct],["Nerve",bar("nerve"),s.nerveAlertPct]])if(b){const c=Number(b.current??0),m=Number(b.maximum??0);if(m&&c/m*100>=l)a.push(["warn",`${n} ir ${Math.round(c/m*100)}% pilns (${c}/${m}).`])}for(const k of Object.keys(ITEMS)){const p=market[k]?.[0]?.price;if(Number.isFinite(p)){if(p<=s[k+"Green"])a.push(["ok",`${ITEMS[k].name}: ${money(p)} — zem GREEN limita.`]);else if(p<=s[k+"Yellow"])a.push(["warn",`${ITEMS[k].name}: ${money(p)} — WATCH zonā.`])}}if(!a.length)a.push(["","Nav trigerētu brīdinājumu."]);$("alerts").innerHTML=a.map(x=>`<div class="alert ${x[0]}">${x[1]}</div>`).join("");const imp=a.find(x=>x[0]==="bad")||a.find(x=>x[0]==="ok");if(imp)notify(imp[1])}
+function hist(){let h=[];try{h=JSON.parse(localStorage.getItem("taHistory")||"[]")}catch(e){}h.unshift({ts:Date.now(),cash:cash(),hydrogen:market.hydrogen?.[0]?.price??null,methane:market.methane?.[0]?.price??null,oxygen:market.oxygen?.[0]?.price??null});h=h.slice(0,100);localStorage.setItem("taHistory",JSON.stringify(h));$("hist").textContent=JSON.stringify(h,null,2)}
+async function refresh(){if(!$("key").value.trim()){status("Ievadi API key","warn");return}$("refresh").disabled=true;status("Atjauno…","warn");raw={};const base=[safe("bars","/user/bars"),safe("cooldowns","/user/cooldowns"),safe("money","/user/money"),safe("education","/user/education"),safe("racingrecords","/user/racingrecords"),safe("races","/user/races"),safe("enlistedcars","/user/enlistedcars"),safe("organizedcrime","/user/organizedcrime"),safe("travel","/user/travel")];const mm=Object.entries(ITEMS).map(async([k,it])=>{try{const d=await api(`/market/${it.id}/itemmarket?offset=0`);raw["market_"+k]=d;market[k]=listings(d)}catch(e){raw["market_"+k]={_error:e.message};market[k]=[]}});await Promise.all([...base,...mm]);renderUser();renderMarket();alerts();hist();$("last").textContent=new Date().toLocaleTimeString();const errs=Object.values(raw).filter(x=>x?._error).length;status(errs?`Savienots (${errs} kļūdas — Diagnostics)`:"Savienots",errs?"warn":"ok");$("refresh").disabled=false}
+function status(t,c){$("status").textContent=t;$("dot").className="dot "+c}function restart(){if(timer)clearInterval(timer);if($("auto").checked)timer=setInterval(refresh,60000)}
+$("saveKey").onclick=()=>{localStorage.setItem("taKey",$("key").value.trim());refresh()};$("refresh").onclick=refresh;$("saveSettings").onclick=saveSt;$("auto").onchange=()=>{localStorage.setItem("taAuto",$("auto").checked?"1":"0");restart()};$("compat").onchange=()=>localStorage.setItem("taCompat",$("compat").checked?"1":"0");$("notif").onclick=async()=>{if(!("Notification"in window))return alert("Notifications API nav pieejams");const p=await Notification.requestPermission();$("notif").textContent=p==="granted"?"Paziņojumi ✓":"Paziņojumi"};
+(()=>{$("key").value=localStorage.getItem("taKey")||"";$("compat").checked=localStorage.getItem("taCompat")==="1";const a=localStorage.getItem("taAuto");$("auto").checked=a===null?true:a==="1";loadSt();try{$("hist").textContent=JSON.stringify(JSON.parse(localStorage.getItem("taHistory")||"[]"),null,2)}catch(e){}if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});if($("key").value)refresh();restart()})();
+
+// $1 Radar: locally imported public snapshots, no scraping or external key sharing.
+const DB_SEED_DATE='2026-10-12';
+const DB_SEED=[
+ ['Xanax','Drug','Alfa_Cough',3587169,3,2700000],
+ ['Jawbreaker','Candy','Alfa_Cough',3587169,5,1800000],
+ ['Pixie Sticks','Candy','Alfa_Cough',3587169,5,1800000],
+ ['First Aid Kit','Medical','killscar',3609777,91,912500],
+ ['Bag of Tootsie Rolls','Candy','Alfa_Cough',3587169,10,821500],
+ ['Morphine','Medical','killscar',3609777,48,726300],
+ ['Bag of Chocolate Truffles','Candy','Alfa_Cough',3587169,5,725400],
+ ['Paint Mask','Enhancer','Groonya',4308185,1,718500],
+ ['Can of Goose Juice','Energy Drink','Nyxe375',3810192,1,409300],
+ ['Bag of Candy Kisses','Candy','Alfa_Cough',3587169,5,270600],
+ ['Uncut Diamonds','Other','Zega',3940389,1,240100],
+ ["Lawyer's Business Card",'Booster','Marbles345',2743104,1,220400],
+ ['Bonded Latex','Material','Groonya',4308185,1,218800],
+ ['ATM Key','Tool','Groonya',4308185,1,215000],
+ ['Harpoon','Weapon','killscar',3609777,1,199100],
+ ['Harpoon','Weapon','Cratefull',4023574,1,199100],
+ ['Picture Frame','Material','WatermelonBoi',4314903,7,174700],
+ ['Macana','Weapon','vbprog',3971628,1,102600],
+ ['Certificate Seal','Material','Groonya',4308185,1,100000],
+ ['Kodachi','Weapon','DameKatzchen',3521694,1,91200]
+].map(([item,category,seller,id,qty,value])=>({item,category,seller,id,qty,value}));
+const DB_KEY='taDollarV11', DB_MARKS='taDollarMarksV11';
+let dbRows=[],dbNew=new Set(),dbStamp='';
+const dbId=r=>`${r.id}:${r.item.toLowerCase()}`;
+function dbGetMarks(){try{return JSON.parse(localStorage.getItem(DB_MARKS)||'{}')}catch(e){return {}}}
+function dbParseValue(s){if(typeof s==='number')return s;const m=String(s||'').trim().replace(/,/g,'').match(/\$?\s*([\d.]+)\s*([KMB])?/i);if(!m)return NaN;return Number(m[1])*({K:1e3,M:1e6,B:1e9}[String(m[2]||'').toUpperCase()]||1)}
+function dbClean(r){
+ const item=String(r.item||r.name||'').trim(),seller=String(r.seller||r.player||'').trim(),id=Number(r.id||r.sellerId||r.playerId),qty=Number(r.qty||r.quantity||1),value=dbParseValue(r.value??r.totalValue??r.marketValue);
+ if(!item||!seller||!Number.isSafeInteger(id)||id<=0||!Number.isFinite(qty)||qty<1||!Number.isFinite(value)||value<1)return null;
+ return {item:item.slice(0,90),seller:seller.slice(0,70),id,qty:Math.floor(qty),value,category:String(r.category||'').slice(0,50)};
+}
+function dbParseText(t){
+ const trimmed=t.trim();if(!trimmed)return [];
+ if(trimmed[0]==='['||trimmed[0]==='{'){
+   const obj=JSON.parse(trimmed), arr=Array.isArray(obj)?obj:(obj.items||obj.listings||[]);
+   return arr.map(dbClean).filter(Boolean);
+ }
+ const out=[];
+ for(let line of trimmed.split(/\r?\n/)){
+   line=line.replace(/^\s*\|?\s*/,'').replace(/\s*\|\s*$/,'').trim();
+   if(!line||/^(item|prece|seller|player)\s*[,|]/i.test(line)||/^[\-\s|]+$/.test(line))continue;
+   // Simple CSV: item,seller,id,qty,totalValue[,category]
+   const csv=line.split(/[,;\t]/).map(s=>s.trim().replace(/^"|"$/g,''));
+   if(csv.length>=5&&/^\d+$/.test(csv[2])&&/^\d+$/.test(csv[3])){
+     const row=dbClean({item:csv[0],seller:csv[1],id:csv[2],qty:csv[3],value:csv[4],category:csv[5]||''});if(row)out.push(row);continue;
+   }
+   // Copied TornW3B table: Item Category | Seller [id] Qty: 3 | $2.7M
+   const m=line.match(/^(.+?)\s*(?:\|\s*)?([\w.-]+)\s*\[(\d+)\]\s*(?:\|\s*)?Qty\s*:\s*(\d+)\s*(?:\|\s*)?\$?\s*([\d,.]+\s*[KMB]?)/i);
+   if(m){let itemAndCat=m[1].replace(/\s*\|\s*$/,'').trim(),category='';for(const cat of ['Energy Drink','Medical','Material','Enhancer','Weapon','Booster','Candy','Other','Drug','Tool','Flower','Plushie','Armor']){if(itemAndCat.endsWith(' '+cat)){category=cat;itemAndCat=itemAndCat.slice(0,-cat.length-1).trim();break}}const row=dbClean({item:itemAndCat,category,seller:m[2],id:m[3],qty:m[4],value:m[5]});if(row)out.push(row);continue}
+   // Tabular copied text: Item\tCategory\tSeller [id]\tQty: n\t$value
+   const x=line.match(/^(.+?)\s*\|\s*([\w.-]+)\s*\[(\d+)\]\s*(?:\|\s*)?Qty:\s*(\d+)\s*\|\s*\$?\s*([\d,.]+\s*[KMB]?)/i);
+   if(x){const row=dbClean({item:x[1],seller:x[2],id:x[3],qty:x[4],value:x[5]});if(row)out.push(row)}
+ }
+ return [...new Map(out.map(r=>[dbId(r),r])).values()];
+}
+function dbLoad(){
+ try{const d=JSON.parse(localStorage.getItem(DB_KEY)||'null');if(d&&Array.isArray(d.rows)&&d.rows.length){dbRows=d.rows.map(dbClean).filter(Boolean);dbStamp=d.stamp||'';dbNew=new Set(d.new||[]);return}}catch(e){}
+ dbRows=DB_SEED.map(x=>({...x}));dbStamp='Sākotnējais publiskais saraksts · '+DB_SEED_DATE;dbNew=new Set();
+}
+function dbSave(){try{localStorage.setItem(DB_KEY,JSON.stringify({rows:dbRows,stamp:dbStamp,new:[...dbNew]}))}catch(e){}}
+function dbEl(tag,cls,txt){const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x}
+function dbLink(label,url){const a=dbEl('a','db-link',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a}
+function dbRender(){
+ const list=$('dbList');if(!list)return;
+ const q=$('dbSearch').value.trim().toLowerCase(),sort=$('dbSort').value,filter=$('dbFilter').value,marks=dbGetMarks();
+ let rows=dbRows.filter(r=>{
+  const key=dbId(r),mark=marks[key]||{};
+  if(q&&!(`${r.item} ${r.seller} ${r.category}`.toLowerCase().includes(q)))return false;
+  if(filter==='new'&&!dbNew.has(key))return false;
+  if(filter==='available'&&mark.status!=='available')return false;
+  if(filter==='locked'&&mark.status!=='locked')return false;
+  if(filter==='unseen'&&mark.status)return false;
+  if(filter==='favorite'&&!mark.favorite)return false;
+  return true;
+ });
+ rows.sort((a,b)=>sort==='unit'?b.value/b.qty-a.value/a.qty:sort==='new'?Number(dbNew.has(dbId(b)))-Number(dbNew.has(dbId(a)))||b.value-a.value:sort==='seller'?a.seller.localeCompare(b.seller):b.value-a.value);
+ $('dbSource').textContent=dbStamp;$('dbCount').textContent=`${dbRows.length} piedāvājumi (${rows.length} atlasīti)`;
+ $('dbTop').textContent='Lielākais '+money(Math.max(0,...dbRows.map(r=>r.value)));
+ $('dbNew').textContent=dbNew.size+' jauni kopš importa';
+ list.replaceChildren();
+ if(!rows.length){list.append(dbEl('div','db-note','Nav piedāvājumu, kas atbilst filtram.'));return}
+ for(const r of rows.slice(0,120)){
+  const key=dbId(r),mark=marks[key]||{},box=dbEl('article','db-item'),top=dbEl('div','db-item-top'),left=dbEl('div');
+  const title=dbEl('h3','',r.item);left.append(title,dbEl('div','db-meta',`${r.seller} [${r.id}] · ${r.qty} gab. · ${r.category||'kategorija nav norādīta'}`));
+  if(dbNew.has(key))left.append(dbEl('span','db-pill','JAUNS'));
+  const right=dbEl('div');right.style.textAlign='right';right.append(dbEl('div','db-price',money(r.value)),dbEl('div','db-meta',money(r.value/r.qty)+'/gab.'));
+  top.append(left,right);box.append(top);
+  const net=r.value*.95-r.qty;
+  box.append(dbEl('div','db-meta',`Aptuvenā neto vērtība pēc 5%: ${money(net)} · teorētiska, nav garantēta`));
+  const bottom=dbEl('div','db-item-bottom');
+  bottom.append(dbLink('Atvērt Bazaar ↗',`https://www.torn.com/bazaar.php?userId=${r.id}#/`));
+  const sel=dbEl('select');sel.setAttribute('aria-label','Piekļuves statuss '+r.item);
+  for(const [val,label] of [['','Nav pārbaudīts'],['available','Man atvērts'],['locked','Man slēgts'],['gone','Izpārdots']]){
+   const op=dbEl('option','',label);op.value=val;sel.append(op)
+  }
+  sel.value=mark.status||'';
+  sel.addEventListener('change',()=>{const all=dbGetMarks();all[key]={...(all[key]||{}),status:sel.value};localStorage.setItem(DB_MARKS,JSON.stringify(all));if($('dbFilter').value!=='all')dbRender()});
+  bottom.append(sel);
+  const fav=dbEl('button','ghost',mark.favorite?'★ Favorīts':'☆ Favorīts');fav.type='button';fav.addEventListener('click',()=>{const all=dbGetMarks();all[key]={...(all[key]||{}),favorite:!all[key]?.favorite};localStorage.setItem(DB_MARKS,JSON.stringify(all));dbRender()});
+  bottom.append(fav);box.append(bottom);list.append(box)
+ }
+}
+function dbImport(){
+ try{
+  const rows=dbParseText($('dbInput').value);if(!rows.length){$('dbImportMessage').textContent='Neizdevās atpazīt nevienu rindu. Pārbaudi CSV/JSON formātu.';return}
+  const old=new Set(dbRows.map(dbId));dbNew=new Set(rows.filter(r=>!old.has(dbId(r))).map(dbId));dbRows=rows;dbStamp='Importēts lokāli · '+new Date().toLocaleString('lv-LV');dbSave();dbRender();
+  $('dbImportMessage').textContent=`Importēti ${rows.length} piedāvājumi; ${dbNew.size} jauni. Šie ir importēti dati, nevis automātiska tiešraide.`;
+ }catch(e){$('dbImportMessage').textContent='Importa kļūda: '+e.message}
+}
+function dbInit(){
+ dbLoad();dbRender();
+ $('dbSearch').addEventListener('input',dbRender);$('dbSort').addEventListener('change',dbRender);$('dbFilter').addEventListener('change',dbRender);
+ $('dbImportBtn').addEventListener('click',dbImport);
+ $('dbShowImport').addEventListener('click',()=>{$('dbImportBox').open=true;$('dbInput').focus()});
+ $('dbReset').addEventListener('click',()=>{if(!confirm('Atjaunot sākotnējo 12.10.2026 sarakstu? Tavi favorīti paliks.'))return;localStorage.removeItem(DB_KEY);dbLoad();dbRender()});
+ $('dbCsvSample').addEventListener('click',()=>{$('dbInput').value='item,seller,id,qty,totalValue,category\\nXanax,Alfa_Cough,3587169,3,2700000,Drug\\nPaint Mask,Groonya,4308185,1,718500,Enhancer'.replaceAll('\\n','\n');$('dbImportMessage').textContent='CSV paraugs ielādēts. Nospied Importēt un salīdzināt.'});
+}
+dbInit();
+</script></body></html>
